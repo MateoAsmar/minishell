@@ -113,9 +113,8 @@ bool	lexer_redirect_out(t_lex *data, t_token **tokens,
 void	lexer_helper(t_lex *data, t_token **tokens, t_env *envp, char *input)
 {
 	data->start = &input[data->i];
-	while (input[data->i] && !ft_isspace(input[data->i])
-		&& input[data->i] != '<'
-		&& input[data->i] != '>' && input[data->i] != '|')
+	while (input[data->i] && (!ft_isspace(input[data->i])
+			|| data->singlequote || data->doublequote))
 	{
 		if (input[data->i] == '\'' && !data->doublequote)
 			data->singlequote = !data->singlequote;
